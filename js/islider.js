@@ -1,5 +1,5 @@
 ﻿$(function(){
-  slider = {
+  Slider = {
   
     //设置slide宽度占其父容器百分比
     slideWidth: 70,
@@ -30,6 +30,12 @@
 			else curr = index;
 		}
 	})(),
+	
+	//移动至第index页
+	to: function(index){
+		this.current(index);
+		this.update();
+	}
     
     _slides: {
       dom:$(".slides"),
