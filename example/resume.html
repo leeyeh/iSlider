@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="../js/Modernizr.js"></script>
+<script src="../js/matchMedia.js"></script>
+<script src="../js/iscroll.js"></script>
+<script src="../js/islider.js"></script>
+<link href="../css/islider.css" rel="stylesheet">
+<link href="resume.css" rel="stylesheet">
+<title>iSlider</title>
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+</style>
+</head>
+<body>
+  <header>
+    <div class="title">
+      <div class="title-wrapper">
+        <div class="text-wrapper">
+          <h1>Lee Yeh</h1>
+          <p class="sub-title">Just another front-end developer</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="slider" id="slider">
+    <ol class="slides box-wrapper transition">
+	<!-- slide template start -->
+      <li class="">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+		<h2>我的大学<h2>
+          </section>
+          </div>
+        </div>
+      </li>
+      <li class="front">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+          <p>
+        大一至大二时，学习各种前端技术，上课时间看书，下课去图书馆还书，人民邮电出版社引进的蓝底封面的书应该都借过一遍，重构的基础是这个时候打下的，接触神奇的jQuery，还去听过达哥系统的讲ASP.NET。
+          </p>
+          </section>
+          </div>
+        </div>
+      </li>
+      <li class="front">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+          <p>
+        大三在冰岩遇到一群志同道合之人，开始做所谓的产品。前期喜欢用HTML5/CSS3之类的技术做一些炫技性质的效果(你一定见过那些页面上元素哗哗乱飞的设计)，现在看起来傻逼极了。当然会用jQuery是不够的，于是开始学习原生js，尝试理解jQuery的实现原理，还试图为团队的所有产品开发一个js库，失败。
+          </p>
+          </section>
+          </div>
+        </div>
+      </li>
+      <li class="design">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+          <p>
+        每一个前端都有一颗交互的心，至少都热衷于评论各类网站的体验问题，看过了一些推荐的理论书籍之后我也尝试设计一款产品，于是就有了这个课表安卓APP的交互设计稿，这个产品甚至还有一份手绘的WebApp线框图，可惜最后只完成上线了安卓版本。
+          </p>
+          </section>
+          </div>
+        </div>
+      </li>
+      <li class="mobile">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+          <p>
+        说到手机，那就具体说说刚才提到的这个产品“冰岩课表”，由于团队之前从未涉足手机应用领域，一切都需要从0开始，于是从交互、UI设计到界面的实现都由我包揽了，虽然当时的技术力量所限并没有百分百的还原设计方案，但在研究的过程中，对移动交互模型的建立、对于不同DPI设备的兼容、图片的处理方式等等，对后来WebApp开发思路提供了极大的帮助。
+          </p>
+          </section>
+          </div>
+        </div>
+      </li>
+      <li class="front">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+          <p>
+        大三暑期去了腾讯实习，电商设计中心。主要参与各电商平台的开发与日常运营，体验了公司级的开发流程与规范，还有就是无处不在的分享氛围。期间我也分享了对某产品首页的CodeReview，主要关注规范与SEO，觉得不合适这里我就不给文档的链接了。
+          </p>
+          </section>
+          </div>
+        </div>
+      </li>
+      <li class="front">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+          <p>
+        实习期间，从导师与同事那里偷学到无数经过线上产品检验的解决方案甚至歪门邪道，接触了大量提升前端开发效率的工具，对浏览器的兼容性也有了更深刻系统的认识。并且在技术之外，更教我认识到了沟通与主动的重要性。还要感谢“12楼茶水间三国杀小组”的各位带给我无数个美好的午后时光。
+          </p>
+          </section>
+          </div>
+        </div>
+      </li>
+      <li class="front">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+          <p>
+        实习教会了我很多，也清晰地让我认识到自己的不足，开始重新翻出那些蓝皮书，开始关注模块化，设计模式等概念，开始寻找解决问题的最优实践，开始认真在博客上做笔记，在团队里做分享。
+          </p>
+          </section>
+          </div>
+        </div>
+      </li>
+      <li class="mobile">
+        <div class="slide-wrapper">
+          <div class="i-really-dont-want-all-these-wrappers-but-i-cant-find-any-solution-better">
+          <section>
+          <p>
+        目前正着手于掌上华中大触屏版的开发工作，由于团队各产品对于触屏版本App的大量需求，我们将注意力集中于基础模块的抽象，触摸相关交互模型的js封装，以及对不同DPI
+设备的兼容方案的归纳，将开发过程中可能遇到的各类问题的解决方法、与PC开发的区别之处提炼为开源触屏前端最佳实践方案“easytouch”。
+          </p>
+          </section>
+          </div>
+        </div>
+      </li>
+	<!-- slide template end -->
+    </ol>
+  </div>
+  <footer>
+    <div class="pager">
+      <ol class="box-wrapper">
+      </ol>
+      <span class="btn-ctrl previous"></span>
+      <span class="btn-ctrl next"></span>
+    </div>
+  </footer>
+</body>
+</html>
