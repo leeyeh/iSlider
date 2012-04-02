@@ -16,7 +16,7 @@
       useiscroll: Modernizr.touch || !Modernizr.flexbox
     },
     
-	//slider页数
+	//Slider页数
     length: $(".slides li").length,
 	
     //current(): 获取当前页面index
@@ -26,7 +26,7 @@
 		var curr = curr || Number(location.hash.substring(1)) || 0;
 		return function(index){
 			if (index == undefined) return curr;
-			else if (Number(index) == NaN || index<0 || index>=slider.length) return false;
+			else if (Number(index) == NaN || index<0 || index>=Slider.length) return false;
 			else curr = index;
 		}
 	})(),
@@ -35,20 +35,20 @@
 	to: function(index){
 		this.current(index);
 		this.update();
-	}
+	},
     
     _slides: {
       dom:$(".slides"),
       moveTo:function(index){
-        if (slider.device.useiscroll){
-          if (slider.scroll.currPageX != index) {slider.scroll.scrollToPage(index);}
+        if (Slider.device.useiscroll){
+          if (Slider.scroll.currPageX != index) {Slider.scroll.scrollToPage(index);}
         }
         else {
-          //if (slider.device.css3d) {
-            //this.dom[0].style[Modernizr.prefixed("transform3d")] = "translate(" + (-slider.slideWidth * index) +"%, 0, 0)";
+          //if (Slider.device.css3d) {
+            //this.dom[0].style[Modernizr.prefixed("transform3d")] = "translate(" + (-Slider.slideWidth * index) +"%, 0, 0)";
           //}
           //else{
-            this.dom[0].style[Modernizr.prefixed("transform")] = "translate(" + (-slider.slideWidth * index) +"%, 0)";
+            this.dom[0].style[Modernizr.prefixed("transform")] = "translate(" + (-Slider.slideWidth * index) +"%, 0)";
           //}
         }
       }
@@ -63,7 +63,7 @@
         if (index == 0){ 
             this.dom.find(".previous").addClass("disabled"); 
 		}
-		if (index == slider.length-1){
+		if (index == Slider.length-1){
 			this.dom.find(".next").addClass("disabled"); 
         }  
       },
@@ -72,7 +72,7 @@
 	  //description: 返回当前触摸位置的页码
       getIndex: function(pageX){
         var index = Math.floor((pageX - this.position.start)/this.position.width);
-        return ((index<0) || (index>slider.length-1)) ? -1 : index;
+        return ((index<0) || (index>Slider.length-1)) ? -1 : index;
       },
 	  //recalculate this.position
       refresh: function(){
@@ -88,7 +88,7 @@
     
 	//改变当前页面hash值
     _hash: function(index){
-      if (index<0 || index>=slider.length) return;
+      if (index<0 || index>=Slider.length) return;
       location.hash = index;
     },
 	
@@ -99,12 +99,10 @@
       this._pager.moveTo(this.current());
     },
     previous: function(){
-      this.current(this.current() - 1);
-	  this.update();
+      this.to(this.current() - 1);
     },
     next: function(){
-      this.current(this.current() + 1);
-	  this.update();
+      this.to(this.current() + 1);
     },
     
     init: function(){
@@ -120,40 +118,39 @@
 	  //hashchange事件
       window.onhashchange = function(e){
         var hash = Number(location.hash.substring(1));
-        if (hash == slider.current() || hash<0 || hash>=slider.length) {
-          slider._hash(slider.current());
+        if (hash == Slider.current() || hash<0 || hash>=Slider.length) {
+          Slider._hash(Slider.current());
           return;
         }
-        slider.current(hash);
-        slider.update();
+        Slider.to(hash);
       };
 	  //键盘左右键
       $(document).bind("keydown", function(e){
         switch (e.keyCode){
             case 37:
-              slider.previous();
+              Slider.previous();
               break
             case 39:
-              slider.next();
+              Slider.next();
               break
         }
       });
 	  //导航箭头
-      $(".pager .previous").bind("click", function(){slider.previous();});
-      $(".pager .next").bind("click", function(){slider.next();});
+      $(".pager .previous").bind("click", function(){Slider.previous();});
+      $(".pager .next").bind("click", function(){Slider.next();});
       //移动设备onorientationchange或resize
       var fnResize = function(){
         window.scroll(0,0);
         window.setTimeout(function(){
-          if (slider.device.useiscroll) { 
-            slider.scroll.refresh();
-            slider.scroll.scrollToPage(slider.current(), 0, 0); 
+          if (Slider.device.useiscroll) { 
+            Slider.scroll.refresh();
+            Slider.scroll.scrollToPage(Slider.current(), 0, 0); 
           }
-          if (slider.device.touch) { slider._pager.refresh();}
+          if (Slider.device.touch) { Slider._pager.refresh();}
         },0);
       };
-      if ('onorientationchange' in window && slider.device.landscape.addListener) {
-        slider.device.landscape.addListener(fnResize);
+      if ('onorientationchange' in window && Slider.device.landscape.addListener) {
+        Slider.device.landscape.addListener(fnResize);
       }
       else{
         $(window).bind( 'resize', fnResize);
@@ -163,18 +160,17 @@
       //touch部分
       if (this.device.useiscroll){
         //实例化iScroll
-        this.scroll = new iScroll('slider', {
+        this.scroll = new iScroll('Slider', {
           snap: 'li',
           momentum: false,
           hScrollbar: false,
           onScrollEnd: function(){
-            if (slider.current() !== this.currPageX){
-              slider.current(this.currPageX);
-              slider.update();
+            if (Slider.current() !== this.currPageX){
+              Slider.to(this.currPageX);
              }
           }
         });
-        $("#slider").css("overflow","visible");
+        $("#Slider").css("overflow","visible");
         
         //页码部分touch支持        
         var touchStart = function(event){
@@ -183,19 +179,18 @@
             return;
           }
           event.preventDefault();
-          var pager = slider._pager;
+          var pager = Slider._pager;
           var index = pager.getIndex(event.touches[0].pageX);
           if ( index != -1 ){
           $(pager.dom.find("li").removeClass("highlight current")[index]).addClass("highlight current");
-          if ( slider.current() !== index ){
-              slider.current(index);
-              slider.update();
+          if ( Slider.current() !== index ){
+              Slider.to(index);
             }
           }
         };
         var touchEnd = function(event){
           event.preventDefault();
-          slider._pager.dom.find("li").removeClass("highlight");
+          Slider._pager.dom.find("li").removeClass("highlight");
         };
         var footer = this._pager.dom.parent()[0];
         footer.addEventListener("touchstart", touchStart, false);
@@ -207,8 +202,8 @@
       
   };
   
-  slider.init();
-  slider.update();
+  Slider.init();
+  Slider.update();
   
 });
  
